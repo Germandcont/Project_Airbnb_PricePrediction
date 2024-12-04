@@ -1,7 +1,7 @@
 # Project_Airbnb
-In this proyect my main goal was to analyze Airbnb's publications from the city of Lyon, France para detectar como se ve afectado el precio segun diferentes variables o combinaciones de estas. 
+In this proyect my main goal was to analyze Airbnb's listings from the city of Lyon, to detect how daily prices are influenced by different variables.
 
-Para esto seguí los siguientes pasos: 
+Steps followed: 
 - 1
 - 2
 - 3
@@ -13,4 +13,4 @@ Para esto seguí los siguientes pasos:
 ### Data csv's
 
 Este proyecto requiere archivos CSV que no están incluidos en el repositorio.
-- Datasets fro: [Inside Airbnb](https://insideairbnb.com/get-the-data/).
+- Datasets from: [Inside Airbnb](https://insideairbnb.com/get-the-data/).
