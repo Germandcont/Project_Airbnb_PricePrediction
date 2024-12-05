@@ -1,12 +1,16 @@
 # Project_Airbnb
-In this proyect my main goal was to analyze Airbnb's listings from the city of Lyon, to detect how daily prices are influenced by different variables.
+In this project, my main goal was to develop a predictive model to estimate Airbnb listing prices in the city of Lyon by analyzing how prices are influenced by different variables, and to provide personalized recommendations to users.
 
 Steps followed: 
-- 1
-- 2
-- 3
-- 4
-- 5
+- 1 Data preprocesing and EDA
+   - Mergin relevant Csv
+   - Repairing data (Some with KNN Regressor)
+   - Predictive Model (Using Random Forest Regressor)
+
+- 2 Creation of PowerBi interactive Panel
+
+- 3 Creating Streamlit App
+  
  
 ## Project Configuration
 
