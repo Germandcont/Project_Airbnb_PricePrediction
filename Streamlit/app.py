@@ -198,11 +198,11 @@ if page == "Predicción":
         st.write(f"El precio estimado para la nueva publicación es: €{precio_original[0]:.2f} al día")
 
 #   Calcular ingresos segun tasa de ocupacion
-    tasa_ocupacion = st.slider('Tasa de ocupación', min_value=0.0, max_value=100.0, value=50.0, step=0.1)
+    tasa_ocupacion = st.slider('Tasa de ocupación anual', min_value=0.0, max_value=100.0, value=50.0, step=0.1)
 
     ingresos = precio_original[0] * tasa_ocupacion / 100 * 365
     ingresos = ingresos.round(2)
     #quitar decimales 
     ingreos = int(ingresos)
-    
+
     st.write(f"Los ingresos estimados para una tasa de ocupación del {tasa_ocupacion:.2f}% anual serían de: €{ingresos:.2f}")
