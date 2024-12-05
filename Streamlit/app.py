@@ -63,7 +63,7 @@ if page == 'Portada':
 # PAGINA DE INTRODUCCION
 
 if page == 'Introducción':
-    st.write("El objetivo es explorar cómo varían los precios de las publicaciones de Airbnb en Lyon en función de diferentes características como ubicación, tipo de alojamiento, y otros factores importantes.")
+    st.write("El objetivo es desarrollar un modelo de predicción sobre el precio de publicación en Airbnb de una determinada vivienda en la ciudad de Lyon según sus características.")
     st.markdown("### Variables a considerar:")
 
     #Cols
@@ -88,7 +88,7 @@ if page == 'Introducción':
     with col3:
         st.markdown("#### Ubicación")
         #Mostramos una tabla de las variables
-        columns_ubicacion = ['Latitude', 'Longitude', 'Neighbourhood_cleansed']
+        columns_ubicacion = ['Latitude', 'Longitude', 'Neighbourhood']
         for column in columns_ubicacion:
             st.markdown(f"- {column}")
 
@@ -195,4 +195,14 @@ if page == "Predicción":
         precio_original = np.expm1(prediccion_precio)
         
         # Mostrar el resultado
-        st.write(f"El precio estimado para la nueva publicación es: ${precio_original[0]:.2f}")
+        st.write(f"El precio estimado para la nueva publicación es: €{precio_original[0]:.2f} al día")
+
+#   Calcular ingresos segun tasa de ocupacion
+    tasa_ocupacion = st.slider('Tasa de ocupación', min_value=0.0, max_value=100.0, value=50.0, step=0.1)
+
+    ingresos = precio_original[0] * tasa_ocupacion / 100 * 365
+    ingresos = ingresos.round(2)
+    #quitar decimales 
+    ingreos = int(ingresos)
+    
+    st.write(f"Los ingresos estimados para una tasa de ocupación del {tasa_ocupacion:.2f}% anual serían de: €{ingresos:.2f}")
