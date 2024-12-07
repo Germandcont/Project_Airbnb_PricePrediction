@@ -35,28 +35,29 @@ df_model = pd.read_csv(r'data/df_model.csv')
 
 
 # Crear un menú de páginas usando selectbox
-page = st.sidebar.selectbox('Selecciona una página', ["Portada",'Introducción', 'Análisis de Datos', 'Visualización', 'Predicción'])
+page = st.sidebar.selectbox('Selecciona una página', ["Portada",'Introducción', 'Análisis de Datos', 'Panel Power BI', 'Predicción'])
 
 # Mostrar contenido basado en la selección
 if page == 'Portada':
-    st.markdown("<h1 style='text-align: center;'>Data Analysis Airbnb</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>Airbnb Project</h1>", unsafe_allow_html=True)
 elif page == 'Introducción':
-    st.markdown('<h1 style="text-align: center;">Introducción</h1>', unsafe_allow_html=True)
+    pass
 elif page == 'Análisis de Datos':
-    st.write('Aquí se realizará el análisis de datos.')
-elif page == 'Visualización':
-    st.write('Aquí se mostrarán las visualizaciones.')
+    pass
+elif page == 'Panel Power BI':
+    pass
 elif page == 'Predicción':
-    st.write('Aquí se realizará la predicción.')
+    pass
 
 if page == 'Portada':
    
+    st.sidebar.title('Menú')
+    st.image(r'Img\_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg', use_column_width=True)
 
     # Subtitulo
     st.markdown("<h2 style='text-align: center;'>By Germán Domínguez</h2>", unsafe_allow_html=True)
 
-    st.sidebar.title('Menú')
-    st.image(r'Img\_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg', use_column_width=True)
+
 
 
 
@@ -74,21 +75,21 @@ if page == 'Introducción':
     with col1:
         st.markdown("#### Vivienda")
         #Mostramos una tabla de las variables
-        columns_vivienda = ['Bathrooms', 'Bedrooms', 'Room_type', 'Accomodates', 'Amenities_count',"Review_score_raing"]
+        columns_vivienda = ['Bathrooms', 'Bedrooms', 'Room_type', 'Accomodates', 'Amenities',"Review Score Raing"]
         for column in columns_vivienda:
             st.markdown(f"- {column}")
 
     with col2:
         st.markdown("#### Operación")
         #Mostramos una tabla de las variables
-        columns_otras = ["Price","Minimum_nights","Maximum_nights","Availability_365"]
+        columns_otras = ["Minimum_nights","Maximum_nights","Availability_365"]
         for column in columns_otras:
             st.markdown(f"- {column}")
 
     with col3:
         st.markdown("#### Ubicación")
         #Mostramos una tabla de las variables
-        columns_ubicacion = ['Latitude', 'Longitude', 'Neighbourhood']
+        columns_ubicacion = ['Neighbourhood']
         for column in columns_ubicacion:
             st.markdown(f"- {column}")
 
@@ -103,13 +104,51 @@ if page == 'Introducción':
 if page == 'Análisis de Datos':
     
     #tabs 
-    tab1, tab2, tab3 = st.tabs(['Datos', 'Análisis', 'Visualización'])
+    tab1, tab2, tab3, tab4 = st.tabs(['Distritos', 'Room Type', 'License',"Correlaciones"])
 
-    #with tab3:
-       # st.write("Visualización de datos")
-        #fig, ax = plt.subplots()
-        #sns.countplot(data=df_cleaned, x="id", ax=ax)
-        #st.pyplot(fig)
+    #Vamos a insertar un link de power bi en distritos
+    with tab1:
+        st.markdown("### Análisis de distritos de Lyon")
+
+        # Gráfico de barras de la cantidad de publicaciones por distrito
+        fig, ax = plt.subplots()
+        sns.countplot(data=df_cleaned, y='NEIGHBOURHOOD_CLEANSED', order=df_cleaned['NEIGHBOURHOOD_CLEANSED'].value_counts().index, palette='rocket')
+        plt.xlabel('Número de publicaciones')
+        plt.ylabel('Distrito')
+        plt.title('Cantidad de publicaciones por distrito')
+        st.pyplot(fig)
+
+    with tab2:
+        # Dropear "Hotel room" del DataFrame
+        df_filtered = df_cleaned[df_cleaned['ROOM_TYPE'] != 'Hotel room']
+        
+        # Gráfico de barras de la cantidad de publicaciones por tipo de habitación
+        fig, ax = plt.subplots()
+        sns.countplot(data=df_filtered, y='ROOM_TYPE', order=df_filtered['ROOM_TYPE'].value_counts().index, palette='rocket')
+        plt.xlabel('Número de publicaciones')
+        plt.ylabel('Tipo de habitación')
+        plt.title('Cantidad de publicaciones por tipo de habitación')
+        st.pyplot(fig)
+
+
+    with tab3:
+        # Gráfico de tarta de las licencias de las publicaciones con respecto al total osea en porcentaje
+        fig, ax = plt.subplots()
+        df_cleaned['LICENSE'] = df_cleaned['LICENSE'].str.capitalize()  # Capitalizar la primera letra de cada licencia
+        df_cleaned['LICENSE'].value_counts().plot.pie(autopct='%1.1f%%', ax=ax, colors=sns.color_palette('rocket', n_colors=5, desat=0.5))
+        plt.title('Distribución de licencias de publicaciones')
+        st.pyplot(fig)
+
+
+
+# PAGINA DE PANEL POWER BI
+
+if page == "Panel Power BI":
+            st.markdown("""
+            <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiYmFmYTg0ODQtYzU3MC00M2I5LWEwYTUtMDk4YTMzNDAxN2FiIiwidCI6IjhhZWJkZGI2LTM0MTgtNDNhMS1hMjU1LWI5NjQxODZlY2M2NCIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
+        """, unsafe_allow_html=True)
+
+
 
 
 
@@ -130,7 +169,8 @@ if page == "Predicción":
     best_forest = load_model()
 
     # Título de la aplicación
-    st.title("Predicción de Precio de Airbnb")
+    st.title("Predicción de Ingresos")
+    st.markdown("#### Predicción de precio e ingresos potenciales para una nueva publicación en Airbnb considerando las características de la vivienda y una tasa de ocupación anual.")
 
     # Crear entradas para que el usuario ingrese los valores
     accommodates = st.number_input('Número de huéspedes', min_value=1, max_value=16, value=2)
