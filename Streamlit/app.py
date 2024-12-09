@@ -103,6 +103,10 @@ if page == 'Introducción':
 
 if page == 'Análisis de Datos':
     
+    
+
+
+
     #tabs 
     tab1, tab2, tab3, tab4 = st.tabs(['Distritos', 'Room Type', 'License',"Correlaciones"])
 
@@ -181,7 +185,6 @@ if page == "Predicción":
     maximum_nights = st.number_input('Número máximo de noches', min_value=1, max_value=365, value=30)
     availability_365 = st.number_input('Disponibilidad en el año', min_value=0, max_value=365, value=365)
     number_of_reviews_ltm = st.number_input('Número de reseñas en el último mes', min_value=0, max_value=100, value=0)
-    review_scores_rating = st.number_input('Calificación de reseñas', min_value=0.0, max_value=5.0, value=4.5)
     review_scores_rating = st.slider('Calificación de reseñas', min_value=0.0, max_value=5.0, value=4.5, step=0.1)
     host_is_superhost = st.selectbox('¿Es superhost?', ['Sí', 'No'])
     room_type = st.selectbox('Tipo de habitación', ['Entire home/apt', 'Hotel room', 'Private room', 'Shared room'])
