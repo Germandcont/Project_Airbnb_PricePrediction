@@ -5,16 +5,17 @@ Steps followed:
 - 1 Data preprocesing and EDA
    - Mergin relevant Csv
    - Repairing data (Some with KNN Regressor)
-   - Predictive Model (Using Random Forest Regressor)
+  
+- 2 Predictive Model development (Using Random Forest Regressor)
 
-- 2 Creation of PowerBi interactive Panel
+- 3 Creation of PowerBi interactive Panel
 
-- 3 Creating Streamlit App
+- 4 Creating Streamlit App with the resutls
   
  
 ## Project Configuration
 
 ### Data csv's
 
-Este proyecto requiere archivos CSV que no están incluidos en el repositorio.
+This project requires CSV files that are not included in the repository.
 - Datasets from: [Inside Airbnb](https://insideairbnb.com/get-the-data/).
