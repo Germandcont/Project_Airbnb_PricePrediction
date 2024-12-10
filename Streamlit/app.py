@@ -75,7 +75,7 @@ if page == 'Introducción':
     with col1:
         st.markdown("#### Vivienda")
         #Mostramos una tabla de las variables
-        columns_vivienda = ['Bathrooms', 'Bedrooms', 'Room_type', 'Accomodates', 'Amenities',"Review Score Raing"]
+        columns_vivienda = ['Bathrooms', 'Bedrooms', 'Room Type', 'Accomodates', 'Amenities',"Review Score Raing"]
         for column in columns_vivienda:
             st.markdown(f"- {column}")
 
@@ -123,16 +123,17 @@ if page == 'Análisis de Datos':
         """, unsafe_allow_html=True)
 
     with tab2:
-        # Dropear "Hotel room" del DataFrame
-        df_filtered = df_cleaned[df_cleaned['ROOM_TYPE'] != 'Hotel room']
+        # Dropear "Shared room" del DataFrame
+        df_filtered = df_cleaned[(df_cleaned['ROOM_TYPE'] != "Hotel room") & (df_cleaned['ROOM_TYPE'] != "Shared room")]
         
         # Gráfico de barras de la cantidad de publicaciones por tipo de habitación
         fig, ax = plt.subplots()
-        sns.countplot(data=df_filtered, y='ROOM_TYPE', order=df_filtered['ROOM_TYPE'].value_counts().index, palette='rocket')
+        sns.countplot(data=df_filtered, y='ROOM_TYPE', order=df_filtered['ROOM_TYPE'].value_counts().index, palette='Pastel1')
         plt.xlabel('Número de publicaciones')
         plt.ylabel('Tipo de habitación')
         plt.title('Cantidad de publicaciones por tipo de habitación')
         st.pyplot(fig)
+
 
     with tab3:
 
@@ -144,7 +145,7 @@ if page == 'Análisis de Datos':
         # Gráfico de tarta de las licencias de las publicaciones con respecto al total osea en porcentaje
         fig, ax = plt.subplots()
         df_cleaned['LICENSE'] = df_cleaned['LICENSE'].str.capitalize()  # Capitalizar la primera letra de cada licencia
-        df_cleaned['LICENSE'].value_counts().plot.pie(autopct='%1.1f%%', ax=ax, colors=sns.color_palette('rocket', n_colors=5, desat=0.5))
+        df_cleaned['LICENSE'].value_counts().plot.pie(autopct='%1.1f%%', ax=ax, colors=sns.color_palette('Pastel1', n_colors=5, desat=0.5))
         plt.title('Distribución de licencias de publicaciones')
         st.pyplot(fig)
 
