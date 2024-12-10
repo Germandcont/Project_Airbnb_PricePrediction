@@ -64,7 +64,7 @@ if page == 'Portada':
 # PAGINA DE INTRODUCCION
 
 if page == 'Introducción':
-    st.write("El objetivo es desarrollar un modelo de predicción sobre el precio de publicación en Airbnb de una determinada vivienda en la ciudad de Lyon según sus características.")
+    st.write("El objetivo principal es realizar un análisis de datos de las publicacciones de Airbbn en Lyon y desarrollar un modelo de predicción que me permita recomendar a los usuarios un precio de publicación de sus viviendas.")
     st.markdown("### Variables a considerar:")
 
     #Cols
