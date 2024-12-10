@@ -35,7 +35,7 @@ df_model = pd.read_csv(r'data/df_model.csv')
 
 
 # Crear un menú de páginas usando selectbox
-page = st.sidebar.selectbox('Selecciona una página', ["Portada",'Introducción', 'Análisis de Datos', 'Panel Power BI', 'Predicción'])
+page = st.sidebar.selectbox('Menú', ["Portada",'Introducción', 'Análisis de Datos', 'Panel Power BI', 'Predicción'])
 
 # Mostrar contenido basado en la selección
 if page == 'Portada':
@@ -51,8 +51,8 @@ elif page == 'Predicción':
 
 if page == 'Portada':
    
-    st.sidebar.title('Menú')
-    st.image(r'Img\_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg', use_column_width=True)
+    
+    st.image(r'Img\_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg', use_column_width=True, caption=' ')
 
     # Subtitulo
     st.markdown("<h2 style='text-align: center;'>By Germán Domínguez</h2>", unsafe_allow_html=True)
@@ -102,13 +102,9 @@ if page == 'Introducción':
 # PAGINA DE ANALISIS DE DATOS
 
 if page == 'Análisis de Datos':
-    
-    
-
-
 
     #tabs 
-    tab1, tab2, tab3, tab4 = st.tabs(['Distritos', 'Room Type', 'License',"Correlaciones"])
+    tab1, tab2, tab3, tab4 = st.tabs(['Distritos', 'Room Type',"Características vivienda", 'License'])
 
     #Vamos a insertar un link de power bi en distritos
     with tab1:
@@ -122,6 +118,10 @@ if page == 'Análisis de Datos':
         plt.title('Cantidad de publicaciones por distrito')
         st.pyplot(fig)
 
+        st.markdown("""
+            <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiYmFmYTg0ODQtYzU3MC00M2I5LWEwYTUtMDk4YTMzNDAxN2FiIiwidCI6IjhhZWJkZGI2LTM0MTgtNDNhMS1hMjU1LWI5NjQxODZlY2M2NCIsImMiOjl9&pageName=2bb411b5259e44db228b" frameborder="0" allowFullScreen="true"></iframe>
+        """, unsafe_allow_html=True)
+
     with tab2:
         # Dropear "Hotel room" del DataFrame
         df_filtered = df_cleaned[df_cleaned['ROOM_TYPE'] != 'Hotel room']
@@ -134,8 +134,13 @@ if page == 'Análisis de Datos':
         plt.title('Cantidad de publicaciones por tipo de habitación')
         st.pyplot(fig)
 
-
     with tab3:
+
+         st.markdown("""
+            <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiYmFmYTg0ODQtYzU3MC00M2I5LWEwYTUtMDk4YTMzNDAxN2FiIiwidCI6IjhhZWJkZGI2LTM0MTgtNDNhMS1hMjU1LWI5NjQxODZlY2M2NCIsImMiOjl9&pageName=d4d023d6b6c66185bad0" frameborder="0" allowFullScreen="true"></iframe>
+        """, unsafe_allow_html=True)
+
+    with tab4:
         # Gráfico de tarta de las licencias de las publicaciones con respecto al total osea en porcentaje
         fig, ax = plt.subplots()
         df_cleaned['LICENSE'] = df_cleaned['LICENSE'].str.capitalize()  # Capitalizar la primera letra de cada licencia
@@ -148,8 +153,10 @@ if page == 'Análisis de Datos':
 # PAGINA DE PANEL POWER BI
 
 if page == "Panel Power BI":
+            st.markdown("### Resumen de los datos de Airbnb en Lyon")
+
             st.markdown("""
-            <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiYmFmYTg0ODQtYzU3MC00M2I5LWEwYTUtMDk4YTMzNDAxN2FiIiwidCI6IjhhZWJkZGI2LTM0MTgtNDNhMS1hMjU1LWI5NjQxODZlY2M2NCIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
+            <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiYmFmYTg0ODQtYzU3MC00M2I5LWEwYTUtMDk4YTMzNDAxN2FiIiwidCI6IjhhZWJkZGI2LTM0MTgtNDNhMS1hMjU1LWI5NjQxODZlY2M2NCIsImMiOjl9&pageName=6ced937d0a05e6d0e043" frameborder="0" allowFullScreen="true"></iframe>
         """, unsafe_allow_html=True)
 
 
