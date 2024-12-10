@@ -123,12 +123,10 @@ if page == 'Análisis de Datos':
         """, unsafe_allow_html=True)
 
     with tab2:
-        # Dropear "Shared room" del DataFrame
-        df_filtered = df_cleaned[(df_cleaned['ROOM_TYPE'] != "Hotel room") & (df_cleaned['ROOM_TYPE'] != "Shared room")]
         
         # Gráfico de barras de la cantidad de publicaciones por tipo de habitación
         fig, ax = plt.subplots()
-        sns.countplot(data=df_filtered, y='ROOM_TYPE', order=df_filtered['ROOM_TYPE'].value_counts().index, palette='Pastel1')
+        sns.countplot(data=df_cleaned, y='ROOM_TYPE', order=df_cleaned['ROOM_TYPE'].value_counts().index, palette='Pastel1')
         plt.xlabel('Número de publicaciones')
         plt.ylabel('Tipo de habitación')
         plt.title('Cantidad de publicaciones por tipo de habitación')
