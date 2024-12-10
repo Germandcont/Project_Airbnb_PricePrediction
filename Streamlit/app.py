@@ -151,6 +151,7 @@ if page == 'Análisis de Datos':
 
 
 
+
 # PAGINA DE PANEL POWER BI
 
 if page == "Panel Power BI":
