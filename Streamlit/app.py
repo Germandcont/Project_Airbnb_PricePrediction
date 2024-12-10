@@ -7,7 +7,7 @@ import joblib
 import warnings 
 warnings.filterwarnings('ignore')
 import seaborn as sns
-from sklearn.ensemble import RandomForestRegressor  # Importar RandomForestRegressor
+from sklearn.ensemble import RandomForestRegressor  
 
 #Configuración de la página
 st.set_page_config(
@@ -22,22 +22,17 @@ st.set_page_config(
 
 
 
-#Cargar los datos
 
 df_cleaned = pd.read_csv(r'data/df_clean.csv')
-#Poner mayusculas a las columnas
 df_cleaned.columns = df_cleaned.columns.str.upper()
 
-#Agregar otro dataframe
 df_model = pd.read_csv(r'data/df_model.csv')
 
 
 
 
-# Crear un menú de páginas usando selectbox
 page = st.sidebar.selectbox('Menú', ["Portada",'Introducción', 'Análisis de Datos', 'Panel Power BI', 'Predicción'])
 
-# Mostrar contenido basado en la selección
 if page == 'Portada':
     st.markdown("<h1 style='text-align: center;'>Airbnb Project</h1>", unsafe_allow_html=True)
 elif page == 'Introducción':
@@ -124,7 +119,6 @@ if page == 'Análisis de Datos':
 
     with tab2:
         
-        # Gráfico de barras de la cantidad de publicaciones por tipo de habitación
         fig, ax = plt.subplots()
         sns.countplot(data=df_cleaned, y='ROOM_TYPE', order=df_cleaned['ROOM_TYPE'].value_counts().index, palette='Pastel1')
         plt.xlabel('Número de publicaciones')
@@ -140,7 +134,6 @@ if page == 'Análisis de Datos':
         """, unsafe_allow_html=True)
 
     with tab4:
-        # Gráfico de tarta de las licencias de las publicaciones con respecto al total osea en porcentaje
         fig, ax = plt.subplots()
         df_cleaned['LICENSE'] = df_cleaned['LICENSE'].str.capitalize()  # Capitalizar la primera letra de cada licencia
         df_cleaned['LICENSE'].value_counts().plot.pie(autopct='%1.1f%%', ax=ax, colors=sns.color_palette('Pastel1', n_colors=5, desat=0.5))
