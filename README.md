@@ -9,7 +9,7 @@ Steps followed:
 
 - 3 Creation of PowerBi interactive Panel
 
-- 4 Creating Streamlit App with the resutls
+- 4 Building a Streamlit application to showcase the results.
   
  
 ## Project Configuration
