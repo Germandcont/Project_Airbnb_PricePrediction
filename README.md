@@ -3,8 +3,7 @@ In this project, my main goal was to develop a predictive model to estimate Airb
 
 Steps followed: 
 - 1 Data preprocesing and EDA
-   - Mergin relevant Csv
-   - Repairing data (Some with KNN Regressor)
+   - Some variables were imputed using a KNN Regressor.
   
 - 2 Predictive Model development (Using Random Forest Regressor)
 
