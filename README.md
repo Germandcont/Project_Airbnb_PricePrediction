@@ -3,16 +3,16 @@ In this project, my main goal was to develop a predictive model to estimate Airb
 
 Steps followed: 
 
-Data Preprocessing and EDA
+1. Data Preprocessing and EDA <br/>
 Certain variables were imputed with a KNN Regressor.
 
-Predictive Model Development
+2. Predictive Model Development <br/>
 Implemented a Random Forest Regressor to build the model.
 
-Interactive Dashboard Design
+3. Interactive Dashboard Design <br/>
 Created a Power BI dashboard to visualize the insights.
 
-Result Presentation Application
+4. Result Presentation Application <br/>
 Developed a Streamlit app to showcase the findings.
   
  
