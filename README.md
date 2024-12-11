@@ -7,9 +7,9 @@ Steps followed:
   
 - 2 Predictive Model development (Using Random Forest Regressor)
 
-- 3 Creation of PowerBi interactive Panel
+- 3 Designed and built an interactive Power BI dashboard.
 
-- 4 Building a Streamlit application to showcase the results.
+- 4 Built a Streamlit application to showcase the results.
   
  
 ## Project Configuration
