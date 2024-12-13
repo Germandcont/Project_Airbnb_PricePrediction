@@ -165,7 +165,7 @@ if page == "Predicción":
     #Cargar modelo
     @st.cache_resource
     def load_model():
-        model = joblib.load(r'Data\random_forest_model.pkl')
+        model = joblib.load(r'Streamlit\random_forest_model.pkl')
         return model   
 
     # Cargar el modelo entrenado

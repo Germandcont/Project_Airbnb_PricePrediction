@@ -6,3 +6,4 @@ Data/calendar.csv
 Data/reviews_summary.csv
 Img/_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg
 Data/random_forest_model.pkl
+Streamlit/random_forest_model.pkl
