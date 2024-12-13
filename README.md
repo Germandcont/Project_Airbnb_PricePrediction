@@ -22,3 +22,10 @@ Developed a Streamlit app to showcase the findings.
 
 This project requires CSV files that are not included in the repository.
 - Datasets from: [Inside Airbnb](https://insideairbnb.com/get-the-data/).
+
+## PowerBi Summary Panel
+
+![Captura de pantalla 2024-12-11 155915](https://github.com/user-attachments/assets/14c7c127-feb2-4ac6-bc2d-78916675462c)
+![Captura de pantalla 2024-12-11 155057](https://github.com/user-attachments/assets/6f7f097e-10d9-46f9-bf03-e48c7f5bbf9c)
+
+
