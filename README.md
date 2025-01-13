@@ -7,7 +7,15 @@ Steps followed:
 Certain variables were imputed with a KNN Regressor.
 
 2. Predictive Model Development <br/>
-Implemented a Random Forest Regressor to build the model.
+
+- Model Preparation:
+Analyzed histograms of key variables.
+Tested for skewness and applied logarithmic or Box-Cox transformations as needed, followed by re-evaluating histograms.
+Examined variable correlations to identify potential predictors.
+Encoded categorical variables such as Superhost (True/False), Room Type, and License Type.
+
+- Model Building:
+Implemented a Random Forest Regressor to build the prediction model.
 
 3. Interactive Dashboard Design <br/>
 Created a Power BI dashboard to visualize insights and demonstrate how Airbnb listing prices are affected as the variables included in our prediction model are adjusted or modified.
