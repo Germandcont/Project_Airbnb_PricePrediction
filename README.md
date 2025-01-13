@@ -10,7 +10,7 @@ Certain variables were imputed with a KNN Regressor.
 Implemented a Random Forest Regressor to build the model.
 
 3. Interactive Dashboard Design <br/>
-Created a Power BI dashboard to visualize the insights.
+Created a Power BI dashboard to visualize insights and demonstrate how Airbnb listing prices are affected as the variables included in our prediction model are adjusted or modified.
 
 4. Result Presentation Application <br/>
 Developed a Streamlit app to showcase the findings.
