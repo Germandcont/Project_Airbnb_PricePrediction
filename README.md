@@ -6,22 +6,20 @@ Steps followed:
 1. Data Preprocessing and EDA <br/>
 Certain variables were imputed with a KNN Regressor.
 
-2. Predictive Model Development <br/>
+2. Model Preparation <br/>
+Analyzed histograms of key variables. <br/>
+Tested for skewness and applied logarithmic or Box-Cox transformations as needed, followed by re-evaluating histograms. <br/>
+Examined variable correlations to identify potential predictors. <br/>
+Encoded categorical variables such as Superhost (True/False), Room Type, and License Type. <br/>
 
-- Model Preparation:
-Analyzed histograms of key variables.
-Tested for skewness and applied logarithmic or Box-Cox transformations as needed, followed by re-evaluating histograms.
-Examined variable correlations to identify potential predictors.
-Encoded categorical variables such as Superhost (True/False), Room Type, and License Type.
-
-- Model Building:
+3. Model Building <br/>
 Implemented a Random Forest Regressor to build the prediction model.
 
-3. Interactive Dashboard Design <br/>
+4. Interactive Dashboard Design <br/>
 Created a Power BI dashboard to visualize insights and demonstrate how Airbnb listing prices are affected as the variables included in our prediction model are adjusted or modified.
 
-4. Result Presentation Application <br/>
-Developed a Streamlit app to showcase the findings.
+5. Result Presentation Application <br/>
+Developed a Streamlit app to showcase the findings, incorporating the predictive model and an interactive, form-based interface. Users can input key property details, such as neighborhood, number of bedrooms, number of bathrooms, host type and other relevant characteristics, to generate an estimated listing price for the Airbnb based on the model's predictions.
   
  
 ## Project Configuration
