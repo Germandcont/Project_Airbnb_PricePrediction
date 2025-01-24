@@ -1,10 +1,10 @@
 # Project_Airbnb
-In this project, my main goal was to develop a predictive model to estimate Airbnb listing prices in the city of Lyon by analyzing how prices are influenced by different variables, and to provide personalized recommendations to users.
+The goal of this project was to build a predictive model to help Airbnb users in Lyon identify the optimal market price for their listings. By entering property details in a form, users received data-driven price recommendations to remain competitive.
 
 Steps followed: 
 
 1. Data Preprocessing and EDA <br/>
-Certain variables were imputed with a KNN Regressor.
+Imputed specific variables using a K-Nearest Neighbors (KNN) Regressor to enhance data completeness and accuracy.
 
 2. Model Preparation <br/>
 Analyzed histograms of key variables. <br/>
