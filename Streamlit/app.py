@@ -46,8 +46,6 @@ elif page == 'Predicción':
 
 if page == 'Portada':
    
-    
-    st.image('Img/8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg', use_container_width=True, caption=' ')
 
     # Subtitulo
     st.markdown("<h2 style='text-align: center;'>By Germán Domínguez</h2>", unsafe_allow_html=True)
