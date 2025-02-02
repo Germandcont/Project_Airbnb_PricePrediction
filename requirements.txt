@@ -5,3 +5,4 @@ seaborn
 streamlit
 plotly
 Pillow
+joblib
