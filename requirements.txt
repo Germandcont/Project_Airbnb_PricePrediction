@@ -6,3 +6,4 @@ streamlit
 plotly
 Pillow
 joblib
+scikit-learn
