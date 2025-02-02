@@ -23,7 +23,7 @@ st.set_page_config(
 
 
 
-df_cleaned = pd.read_csv('Data/df_model.csv')
+df_cleaned = pd.read_csv('Data/df_clean.csv')
 df_cleaned.columns = df_cleaned.columns.str.upper()
 
 df_model = pd.read_csv('Data/df_model.csv')
