@@ -111,9 +111,6 @@ if page == 'Análisis de Datos':
         plt.title('Cantidad de publicaciones por distrito')
         st.pyplot(fig)
 
-        st.markdown("""
-            <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiYmFmYTg0ODQtYzU3MC00M2I5LWEwYTUtMDk4YTMzNDAxN2FiIiwidCI6IjhhZWJkZGI2LTM0MTgtNDNhMS1hMjU1LWI5NjQxODZlY2M2NCIsImMiOjl9&pageName=2bb411b5259e44db228b" frameborder="0" allowFullScreen="true"></iframe>
-        """, unsafe_allow_html=True)
 
     with tab2:
         
