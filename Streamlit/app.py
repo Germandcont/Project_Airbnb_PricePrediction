@@ -50,8 +50,7 @@ if page == 'Portada':
     # Subtitulo
     st.markdown("<h2 style='text-align: center;'>By Germán Domínguez</h2>", unsafe_allow_html=True)
 
-st.image('Img_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg')
-
+st.image('Img\_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg')
 
 
 # PAGINA DE INTRODUCCION
