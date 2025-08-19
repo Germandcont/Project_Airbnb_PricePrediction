@@ -35,26 +35,12 @@ df_model = pd.read_csv('Data/df_model.csv')
 page = st.sidebar.selectbox('Menú', ["Portada",'Introducción', 'Análisis de Datos', 'Panel Power BI', 'Predicción'])
 
 if page == 'Portada':
-    st.markdown("<h1 style='text-align: center;'>Airbnb Project</h1>", unsafe_allow_html=True)
+    # Imagen con subtítulo/caption
+    image_path = 'Img/_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg'
+    st.image(image_path, caption='Airbnb Project', width=600)
     
-    # Mostrar imagen de portada
-    # Intentar diferentes rutas dependiendo de desde donde se ejecute
-    image_paths = [
-        os.path.join('..', 'Img', '_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg'),  # Si se ejecuta desde Streamlit/
-        os.path.join('Img', '_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg')         # Si se ejecuta desde raíz
-    ]
-    
-    image_loaded = False
-    for image_path in image_paths:
-        if os.path.exists(image_path):
-            st.image(image_path, 
-                     caption='Airbnb Lyon Project', 
-                     use_container_width=True)
-            image_loaded = True
-            break
-    
-    if not image_loaded:
-        st.warning("Imagen no encontrada en ninguna de las rutas especificadas")
+    # Línea separadora
+    st.markdown("---")
     
 elif page == 'Introducción':
     pass
@@ -65,16 +51,7 @@ elif page == 'Panel Power BI':
 elif page == 'Predicción':
     pass
 
-if page == 'Portada':
-   
-    # Subtitulo
-    st.markdown("<h2 style='text-align: center;'>By Germán Domínguez</h2>", unsafe_allow_html=True)
-    
-    # Agregar espacio adicional
-    st.markdown("---")
 
-
-    
 # PAGINA DE INTRODUCCION
 
 if page == 'Introducción':
@@ -181,7 +158,7 @@ if page == "Predicción":
     #Cargar modelo
     @st.cache_resource
     def load_model():
-        model = joblib.load('random_forest_model.pkl')
+        model = joblib.load('Streamlit/random_forest_model.pkl')
         return model   
 
     # Cargar el modelo entrenado
@@ -189,8 +166,8 @@ if page == "Predicción":
     best_forest = load_model()
 
     # Título de la aplicación
-    st.title("Predicción de Ingresos")
-    st.markdown("#### Predicción de precio e ingresos potenciales para una nueva publicación en Airbnb considerando las características de la vivienda y una tasa de ocupación anual.")
+    st.title("Formulario de Predicción")
+    st.markdown("##### Predicción de precio e ingresos potenciales para una nueva publicación en Airbnb considerando las características de la vivienda y una tasa de ocupación anual.")
 
     # Crear entradas para que el usuario ingrese los valores
     accommodates = st.number_input('Número de huéspedes', min_value=1, max_value=16, value=2)
@@ -240,32 +217,37 @@ if page == "Predicción":
     })
 
     # Realizar la predicción
-    prediccion_precio = best_forest.predict(nueva_publicacion)
+    # Inicializar session_state para mantener los resultados
+    if 'precio_predicho' not in st.session_state:
+        st.session_state.precio_predicho = None
+    if 'ingresos_calculados' not in st.session_state:
+        st.session_state.ingresos_calculados = None
 
-    # Deshacer la transformación logarítmica para obtener el precio en la escala original
+    # Realizar predicción inicial para cálculos
+    prediccion_precio = best_forest.predict(nueva_publicacion)
     precio_original = np.expm1(prediccion_precio)
 
     # Botón para realizar la predicción
     if st.button('Predecir Precio'):
-        # Realizar la predicción
-        prediccion_precio = best_forest.predict(nueva_publicacion)
-        
-        # Deshacer la transformación logarítmica para obtener el precio en la escala original
-        precio_original = np.expm1(prediccion_precio)
-        
-        # Mostrar el resultado
-        st.write(f"El precio recomendado de publicación es: €{precio_original[0]:.2f} al día")
+        # Guardar el precio en session_state
+        st.session_state.precio_predicho = precio_original[0]
 
-#   Calcular ingresos segun tasa de ocupacion
+    # Mostrar resultado de predicción si existe
+    if st.session_state.precio_predicho is not None:
+        st.success(f"💰 **Precio recomendado de publicación: €{st.session_state.precio_predicho:.2f} al día**")
+
+    # Calcular ingresos según tasa de ocupación
     tasa_ocupacion = st.slider('Tasa de ocupación anual', min_value=0.0, max_value=100.0, value=50.0, step=0.1)
-
-    ingresos = precio_original[0] * tasa_ocupacion / 100 * 365
-    ingresos = ingresos.round(2)
-    #quitar decimales 
-    ingreos = int(ingresos)
 
     # Botón para calcular ingresos estimados
     if st.button('Calcular Ingresos Estimados'):
         ingresos = precio_original[0] * tasa_ocupacion / 100 * 365
         ingresos = ingresos.round(2)
-        st.write(f"Los ingresos estimados para una tasa de ocupación del {tasa_ocupacion:.2f}% anual serían de: €{ingresos:.2f}")
+        st.session_state.ingresos_calculados = {
+            'valor': ingresos,
+            'tasa': tasa_ocupacion
+        }
+
+    # Mostrar resultado de ingresos si existe
+    if st.session_state.ingresos_calculados is not None:
+        st.success(f"📈 **Ingresos estimados para una tasa de ocupación del {st.session_state.ingresos_calculados['tasa']:.1f}% anual: €{st.session_state.ingresos_calculados['valor']:.2f}**")
