@@ -8,7 +8,8 @@ import warnings
 warnings.filterwarnings('ignore')
 import seaborn as sns
 from sklearn.ensemble import RandomForestRegressor
-import os  
+import os
+import pathlib
 
 #Configuración de la página
 st.set_page_config(
@@ -18,42 +19,35 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-
-
-
-
-
-
-# Configurar rutas de manera robusta
-import pathlib
-
-# Obtener la ruta base del proyecto
-current_dir = pathlib.Path(__file__).parent.parent
+# Configurar rutas de manera robusta para deploy
+current_dir = pathlib.Path(__file__).parent
 data_dir = current_dir / "Data"
 img_dir = current_dir / "Img"
 
 # Ruta del modelo - probar múltiples ubicaciones
 model_paths = [
-    pathlib.Path(__file__).parent / "random_forest_model.pkl",  # Mismo directorio que app.py
+    current_dir / "random_forest_model.pkl",                    # Raíz del proyecto (para deploy)
     current_dir / "Streamlit" / "random_forest_model.pkl",      # Ruta original
-    current_dir / "random_forest_model.pkl"                     # Raíz del proyecto
 ]
 
 # Cargar datos con rutas robustas
-df_cleaned = pd.read_csv(data_dir / 'df_clean.csv')
-df_cleaned.columns = df_cleaned.columns.str.upper()
-
-df_model = pd.read_csv(data_dir / 'df_model.csv')
-
-
-
+try:
+    df_cleaned = pd.read_csv(data_dir / 'df_clean.csv')
+    df_cleaned.columns = df_cleaned.columns.str.upper()
+    df_model = pd.read_csv(data_dir / 'df_model.csv')
+except FileNotFoundError as e:
+    st.error(f"Error cargando datos: {e}")
+    st.stop()
 
 page = st.sidebar.selectbox('Menú', ["Portada",'Introducción', 'Análisis de Datos', 'Panel Power BI', 'Predicción'])
 
 if page == 'Portada':
     # Imagen con subtítulo/caption usando ruta robusta
     image_path = img_dir / '_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg'
-    st.image(str(image_path), caption='Airbnb Project', width=600)
+    if image_path.exists():
+        st.image(str(image_path), caption='Airbnb Project', width=600)
+    else:
+        st.warning("Imagen no encontrada")
     
     # Línea separadora
     st.markdown("---")
@@ -67,9 +61,7 @@ elif page == 'Panel Power BI':
 elif page == 'Predicción':
     pass
 
-
 # PAGINA DE INTRODUCCION
-
 if page == 'Introducción':
     st.write("El objetivo principal es realizar un análisis de datos de las publicacciones de Airbbn en Lyon y desarrollar un modelo de predicción que me permita recomendar a los usuarios un precio de publicación de sus viviendas.")
     st.markdown("### Variables a considerar:")
@@ -100,75 +92,13 @@ if page == 'Introducción':
         for column in columns_ubicacion:
             st.markdown(f"- {column}")
 
-
-
-
-
-
-
 # PAGINA DE ANALISIS DE DATOS
-
 if page == 'Análisis de Datos':
-
     #tabs 
     tab1, tab2, tab3, tab4 = st.tabs(['Distritos', 'Room Type',"Características vivienda", 'License'])
 
-    #Vamos a insertar un link de power bi en distritos
-    with tab1:
-        st.markdown("### Análisis de distritos de Lyon")
-
-        # Gráfico de barras de la cantidad de publicaciones por distrito
-        fig, ax = plt.subplots()
-        sns.countplot(data=df_cleaned, y='NEIGHBOURHOOD_CLEANSED', order=df_cleaned['NEIGHBOURHOOD_CLEANSED'].value_counts().index, palette='rocket')
-        plt.xlabel('Número de publicaciones')
-        plt.ylabel('Distrito')
-        plt.title('Cantidad de publicaciones por distrito')
-        st.pyplot(fig)
-
-
-    with tab2:
-        
-        fig, ax = plt.subplots()
-        sns.countplot(data=df_cleaned, y='ROOM_TYPE', order=df_cleaned['ROOM_TYPE'].value_counts().index, palette='Pastel1')
-        plt.xlabel('Número de publicaciones')
-        plt.ylabel('Tipo de habitación')
-        plt.title('Cantidad de publicaciones por tipo de habitación')
-        st.pyplot(fig)
-
-
-    with tab3:
-
-         st.markdown("""
-            <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiYmFmYTg0ODQtYzU3MC00M2I5LWEwYTUtMDk4YTMzNDAxN2FiIiwidCI6IjhhZWJkZGI2LTM0MTgtNDNhMS1hMjU1LWI5NjQxODZlY2M2NCIsImMiOjl9&pageName=d4d023d6b6c66185bad0" frameborder="0" allowFullScreen="true"></iframe>
-        """, unsafe_allow_html=True)
-
-    with tab4:
-        fig, ax = plt.subplots()
-        df_cleaned['LICENSE'] = df_cleaned['LICENSE'].str.capitalize()  # Capitalizar la primera letra de cada licencia
-        df_cleaned['LICENSE'].value_counts().plot.pie(autopct='%1.1f%%', ax=ax, colors=sns.color_palette('Pastel1', n_colors=5, desat=0.5))
-        plt.title('Distribución de licencias de publicaciones')
-        st.pyplot(fig)
-
-
-
-
-# PAGINA DE PANEL POWER BI
-
-if page == "Panel Power BI":
-            st.markdown("### Resumen de los datos de Airbnb en Lyon")
-
-            st.markdown("""
-            <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiYmFmYTg0ODQtYzU3MC00M2I5LWEwYTUtMDk4YTMzNDAxN2FiIiwidCI6IjhhZWJkZGI2LTM0MTgtNDNhMS1hMjU1LWI5NjQxODZlY2M2NCIsImMiOjl9&pageName=6ced937d0a05e6d0e043" frameborder="0" allowFullScreen="true"></iframe>
-        """, unsafe_allow_html=True)
-
-
-
-
-
-
-
-if page == "Predicción":
-
+# PREDICCIÓN
+if page == 'Predicción':
     from sklearn.ensemble import RandomForestRegressor
 
     #Cargar modelo
@@ -182,15 +112,16 @@ if page == "Predicción":
         
         # Si no se encuentra el modelo, mostrar error
         st.error("No se pudo encontrar el archivo del modelo. Asegúrate de que 'random_forest_model.pkl' esté disponible.")
-        return None   
+        return None
 
     # Cargar el modelo entrenado
-    best_forest = RandomForestRegressor(max_features=10, n_estimators=500)
     best_forest = load_model()
+    if best_forest is None:
+        st.stop()
 
     # Título de la aplicación
-    st.title("Formulario de Predicción")
-    st.markdown("##### Predicción de precio e ingresos potenciales para una nueva publicación en Airbnb considerando las características de la vivienda y una tasa de ocupación anual.")
+    st.title("Predicción de Ingresos")
+    st.markdown("#### Predicción de precio e ingresos potenciales para una nueva publicación en Airbnb considerando las características de la vivienda y una tasa de ocupación anual.")
 
     # Crear entradas para que el usuario ingrese los valores
     accommodates = st.number_input('Número de huéspedes', min_value=1, max_value=16, value=2)
@@ -224,10 +155,10 @@ if page == "Predicción":
         'Hotel room': [1 if room_type == 'Hotel room' else 0],
         'Private room': [1 if room_type == 'Private room' else 0],
         'Shared room': [1 if room_type == 'Shared room' else 0],
+        'Licensed': [1 if license_status == 'Licensed' else 0],
+        'Unlicensed': [1 if license_status == 'Unlicensed' else 0],
         'Exempt': [1 if license_status == 'Exempt' else 0],
         'Mobility lease only': [1 if license_status == 'Mobility lease only' else 0],
-        'Unlicensed': [1 if license_status == 'Unlicensed' else 0],
-        'licensed': [1 if license_status == 'licensed' else 0],
         '1er Arrondissement': [1 if neighbourhood_cleansed == '1er Arrondissement' else 0],
         '2e Arrondissement': [1 if neighbourhood_cleansed == '2e Arrondissement' else 0],
         '3e Arrondissement': [1 if neighbourhood_cleansed == '3e Arrondissement' else 0],
@@ -236,10 +167,9 @@ if page == "Predicción":
         '6e Arrondissement': [1 if neighbourhood_cleansed == '6e Arrondissement' else 0],
         '7e Arrondissement': [1 if neighbourhood_cleansed == '7e Arrondissement' else 0],
         '8e Arrondissement': [1 if neighbourhood_cleansed == '8e Arrondissement' else 0],
-        '9e Arrondissement': [1 if neighbourhood_cleansed == '9e Arrondissement' else 0],
+        '9e Arrondissement': [1 if neighbourhood_cleansed == '9e Arrondissement' else 0]
     })
 
-    # Realizar la predicción
     # Inicializar session_state para mantener los resultados
     if 'precio_predicho' not in st.session_state:
         st.session_state.precio_predicho = None
