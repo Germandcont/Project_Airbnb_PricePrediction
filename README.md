@@ -31,6 +31,7 @@ This project requires CSV files that are not included in the repository.
 - Datasets from: [Inside Airbnb](https://insideairbnb.com/get-the-data/).
 
 ## PowerBi Summary Panel
+https://app.powerbi.com/view?r=eyJrIjoiYmFmYTg0ODQtYzU3MC00M2I5LWEwYTUtMDk4YTMzNDAxN2FiIiwidCI6IjhhZWJkZGI2LTM0MTgtNDNhMS1hMjU1LWI5NjQxODZlY2M2NCIsImMiOjl9&pageName=6ced937d0a05e6d0e043
 
 ![Captura de pantalla 2024-12-11 155915](https://github.com/user-attachments/assets/14c7c127-feb2-4ac6-bc2d-78916675462c)
 ![Captura de pantalla 2024-12-11 155057](https://github.com/user-attachments/assets/6f7f097e-10d9-46f9-bf03-e48c7f5bbf9c)
