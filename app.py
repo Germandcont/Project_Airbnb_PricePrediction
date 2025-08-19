@@ -28,8 +28,8 @@ st.set_page_config(
 # Configurar rutas de manera robusta
 import pathlib
 
-# Obtener la ruta base del proyecto
-current_dir = pathlib.Path(__file__).parent.parent
+# Obtener la ruta base del proyecto (ahora desde la raíz)
+current_dir = pathlib.Path(__file__).parent
 data_dir = current_dir / "Data"
 img_dir = current_dir / "Img"
 

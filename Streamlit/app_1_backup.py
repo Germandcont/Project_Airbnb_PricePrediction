@@ -8,8 +8,7 @@ import warnings
 warnings.filterwarnings('ignore')
 import seaborn as sns
 from sklearn.ensemble import RandomForestRegressor
-import os
-from PIL import Image  
+import os  
 
 #Configuración de la página
 st.set_page_config(
@@ -35,9 +34,9 @@ img_dir = current_dir / "Img"
 
 # Ruta del modelo - probar múltiples ubicaciones
 model_paths = [
-    current_dir / "random_forest_model.pkl",                     # Raíz del proyecto (PRIMERO)
     pathlib.Path(__file__).parent / "random_forest_model.pkl",  # Mismo directorio que app.py
     current_dir / "Streamlit" / "random_forest_model.pkl",      # Ruta original
+    current_dir / "random_forest_model.pkl"                     # Raíz del proyecto
 ]
 
 # Cargar datos con rutas robustas
@@ -52,21 +51,9 @@ df_model = pd.read_csv(data_dir / 'df_model.csv')
 page = st.sidebar.selectbox('Menú', ["Portada",'Introducción', 'Análisis de Datos', 'Panel Power BI', 'Predicción'])
 
 if page == 'Portada':
-    # Imagen con subtítulo/caption usando PIL para mejor compatibilidad
+    # Imagen con subtítulo/caption usando ruta robusta
     image_path = img_dir / '_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg'
-    
-    # Verificar si la imagen existe antes de cargarla
-    if image_path.exists():
-        try:
-            # Cargar imagen con PIL para mejor compatibilidad con Streamlit Cloud
-            image = Image.open(image_path)
-            st.image(image, caption='Airbnb Project', width=600)
-        except Exception as e:
-            st.warning(f"⚠️ Error cargando imagen: {e}")
-            st.markdown("### 🏠 Airbnb Lyon - Análisis de Precios")
-    else:
-        st.warning(f"⚠️ No se encontró la imagen en: {image_path}")
-        st.markdown("### 🏠 Airbnb Lyon - Análisis de Precios")
+    st.image(str(image_path), caption='Airbnb Project', width=600)
     
     # Línea separadora
     st.markdown("---")
@@ -190,23 +177,16 @@ if page == "Predicción":
         # Probar diferentes rutas hasta encontrar el modelo
         for model_path in model_paths:
             if model_path.exists():
-                try:
-                    model = joblib.load(str(model_path))
-                    return model
-                except Exception as e:
-                    st.warning(f"⚠️ Error cargando modelo desde {model_path}: {e}")
+                model = joblib.load(str(model_path))
+                return model
         
         # Si no se encuentra el modelo, mostrar error
-        st.error("❌ No se pudo encontrar el archivo del modelo en ninguna ubicación.")
+        st.error("No se pudo encontrar el archivo del modelo. Asegúrate de que 'random_forest_model.pkl' esté disponible.")
         return None   
 
     # Cargar el modelo entrenado
+    best_forest = RandomForestRegressor(max_features=10, n_estimators=500)
     best_forest = load_model()
-    
-    # Si no se pudo cargar el modelo, mostrar mensaje y detener ejecución
-    if best_forest is None:
-        st.error("⚠️ No se puede continuar sin el modelo. Por favor, verifica que el archivo 'random_forest_model.pkl' esté disponible.")
-        st.stop()
 
     # Título de la aplicación
     st.title("Formulario de Predicción")
