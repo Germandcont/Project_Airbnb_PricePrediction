@@ -7,7 +7,8 @@ import joblib
 import warnings 
 warnings.filterwarnings('ignore')
 import seaborn as sns
-from sklearn.ensemble import RandomForestRegressor  
+from sklearn.ensemble import RandomForestRegressor
+import os  
 
 #Configuración de la página
 st.set_page_config(
@@ -37,9 +38,23 @@ if page == 'Portada':
     st.markdown("<h1 style='text-align: center;'>Airbnb Project</h1>", unsafe_allow_html=True)
     
     # Mostrar imagen de portada
-    st.image('../Img/_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg', 
-             caption='Airbnb Lyon Project', 
-             use_container_width=True)
+    # Intentar diferentes rutas dependiendo de desde donde se ejecute
+    image_paths = [
+        os.path.join('..', 'Img', '_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg'),  # Si se ejecuta desde Streamlit/
+        os.path.join('Img', '_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg')         # Si se ejecuta desde raíz
+    ]
+    
+    image_loaded = False
+    for image_path in image_paths:
+        if os.path.exists(image_path):
+            st.image(image_path, 
+                     caption='Airbnb Lyon Project', 
+                     use_container_width=True)
+            image_loaded = True
+            break
+    
+    if not image_loaded:
+        st.warning("Imagen no encontrada en ninguna de las rutas especificadas")
     
 elif page == 'Introducción':
     pass
