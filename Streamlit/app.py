@@ -35,6 +35,12 @@ page = st.sidebar.selectbox('Menú', ["Portada",'Introducción', 'Análisis de D
 
 if page == 'Portada':
     st.markdown("<h1 style='text-align: center;'>Airbnb Project</h1>", unsafe_allow_html=True)
+    
+    # Mostrar imagen de portada
+    st.image('../Img/_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg', 
+             caption='Airbnb Lyon Project', 
+             use_column_width=True)
+    
 elif page == 'Introducción':
     pass
 elif page == 'Análisis de Datos':
@@ -46,9 +52,11 @@ elif page == 'Predicción':
 
 if page == 'Portada':
    
-
     # Subtitulo
     st.markdown("<h2 style='text-align: center;'>By Germán Domínguez</h2>", unsafe_allow_html=True)
+    
+    # Agregar espacio adicional
+    st.markdown("---")
 
 
     
