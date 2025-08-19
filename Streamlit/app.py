@@ -39,7 +39,7 @@ if page == 'Portada':
     # Mostrar imagen de portada
     st.image('../Img/_8b5b6311-2530-4d08-8ce6-c8220c655f1e.jpg', 
              caption='Airbnb Lyon Project', 
-             use_column_width=True)
+             use_container_width=True)
     
 elif page == 'Introducción':
     pass
