@@ -20,7 +20,6 @@ Created a Power BI dashboard to visualize insights and demonstrate how Airbnb li
 
 5. Result Presentation Application <br/>
 Developed a Streamlit app to showcase the findings, incorporating the predictive model and an interactive, form-based interface. Users can input key property details, such as neighborhood, number of bedrooms, number of bathrooms, host type and other relevant characteristics, to generate an estimated listing price for the Airbnb based on the model's predictions.
-https://projectairbnbpriceprediction-mykv4stchztcg6thqtunvh.streamlit.app/
   
  
 ## Project Configuration
