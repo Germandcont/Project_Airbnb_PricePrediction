@@ -1,4 +1,4 @@
-🛠️ Lyon Airbnb - ML Workflow & Implementation
+# 🛠️ Lyon Airbnb - ML Workflow & Implementation
 
 ## 🎯 **Objective**
 Built a **Random Forest Regressor** to help Airbnb users in Lyon identify optimal market prices for their listings. Users input property details through a form to receive data-driven price recommendations and remain competitive.
