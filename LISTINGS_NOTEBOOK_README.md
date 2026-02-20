@@ -37,19 +37,14 @@ Built a **Random Forest Regressor** to help Airbnb users in Lyon identify optima
 - Built user-friendly form interface for price estimation
 - Enabled real-time predictions based on property characteristics
 
-## 📈 **Project Outcomes**
-- ✅ Clean dataset ready for machine learning
-- ✅ Trained Random Forest price prediction model  
-- ✅ Data ready for Streamlit web application
+## 📈 **Project Outcomes & Deliverables**
+- ✅ Clean datasets (`df_clean.csv`, `df_model.csv`) ready for machine learning
+- ✅ Optimized Random Forest price prediction model
+- ✅ Interactive Power BI dashboard for data visualization
+- ✅ Streamlit web application for real-time price predictions
 
 ## 🛠 **Technologies Used**
 - **Python**: pandas, numpy, scikit-learn
 - **Machine Learning**: KNN, Random Forest, GridSearchCV  
 - **Visualization**: matplotlib, seaborn, Power BI
 - **Web Development**: Streamlit
-
-## 📊 **Final Deliverables**
-- Clean datasets (`df_clean.csv`, `df_model.csv`)
-- Optimized Random Forest model
-- Interactive Power BI dashboard
-- Streamlit web application for price predictions
