@@ -1,28 +1,53 @@
-# Project_Airbnb
-The goal of this project was to build a predictive model to help Airbnb users in Lyon identify the optimal market price for their listings. By entering property details in a form, users received data-driven price recommendations to remain competitive.
+🛠️ Lyon Airbnb - ML Workflow & Implementation
 
-Steps followed: 
+## 🎯 **Objective**
+Built a **Random Forest Regressor** to help Airbnb users in Lyon identify optimal market prices for their listings. Users input property details through a form to receive data-driven price recommendations and remain competitive.
 
-1. Data Preprocessing and EDA <br/>
-Imputed specific variables using a K-Nearest Neighbors (KNN) Regressor to enhance data completeness and accuracy.
+## 🔧 **Data Science Process Applied**
 
-2. Model Preparation <br/>
-Analyzed histograms of key variables. <br/>
-Tested for skewness and applied logarithmic or Box-Cox transformations as needed, followed by re-evaluating histograms. <br/>
-Examined variable correlations to identify potential predictors. <br/>
-Encoded categorical variables such as Superhost (True/False), Room Type, and License Type. <br/>
+### **Data Cleaning & Preprocessing**
+- Handled missing values using KNN for bedrooms data
+- Cleaned price and date columns
+- Standardized categorical variables
+- Removed irrelevant data points
 
-3. Model Building <br/>
-Implemented a Random Forest Regressor to build the prediction model.
+### **Exploratory Data Analysis**
+- Created visualizations to understand data patterns
+- Analyzed feature relationships and correlations
+- Examined geographic price distributions
 
-4. Interactive Dashboard Design <br/>
-Created a Power BI dashboard to visualize insights and demonstrate how Airbnb listing prices are affected as the variables included in our prediction model are adjusted or modified.
+### **Feature Engineering & Analysis**
+- Analyzed histograms and tested for data skewness
+- Applied log and Box-Cox transformations to normalize variables
+- Encoded categorical variables (Superhost, Room Type, License Type)
+- Selected relevant features through correlation analysis
 
-5. Result Presentation Application <br/>
-Developed a Streamlit app to showcase the findings, incorporating the predictive model and an interactive, form-based interface. Users can input key property details, such as neighborhood, number of bedrooms, number of bathrooms, host type and other relevant characteristics, to generate an estimated listing price for the Airbnb based on the model's predictions.
+### **Machine Learning Implementation**
+- Built Random Forest Regressor model
+- Optimized model parameters using GridSearchCV
+- Evaluated performance with standard metrics
 
- 
-## Project Configuration
+### **Interactive Dashboard Design**
+- Built Power BI dashboard for data visualization
+- Demonstrated price impact when model variables change
+- Created interactive insights for stakeholders
+
+### **Web Application Development**
+- Developed Streamlit app with predictive model integration
+- Built user-friendly form interface for price estimation
+- Enabled real-time predictions based on property characteristics
+
+## 📈 **Project Outcomes & Deliverables**
+- ✅ Clean datasets (`df_clean.csv`, `df_model.csv`) ready for machine learning
+- ✅ Optimized Random Forest price prediction model
+- ✅ Interactive Power BI dashboard for data visualization
+- ✅ Streamlit web application for real-time price predictions
+
+## 🛠 **Technologies Used**
+- **Python**: pandas, numpy, scikit-learn
+- **Machine Learning**: KNN, Random Forest, GridSearchCV  
+- **Visualization**: matplotlib, seaborn, Power BI
+- **Web Development**: Streamlit
 
 ### Data csv's
 
