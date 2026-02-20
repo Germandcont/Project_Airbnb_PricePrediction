@@ -1,7 +1,7 @@
 # 📊 Listings Notebook Analysis - Lyon Airbnb Price Prediction
 
 ## 🎯 **Objective**
-Built a **Random Forest Regressor** to predict optimal Airbnb listing prices in Lyon through data cleaning, feature engineering, and machine learning techniques.
+Built a **Random Forest Regressor** to help Airbnb users in Lyon identify optimal market prices for their listings. Users input property details through a form to receive data-driven price recommendations and remain competitive.
 
 ## 🔧 **Data Science Process Applied**
 
@@ -12,8 +12,9 @@ Built a **Random Forest Regressor** to predict optimal Airbnb listing prices in 
 - Removed irrelevant data points
 
 ### **Feature Engineering & Analysis**
-- Analyzed data distribution and applied transformations
-- Encoded categorical variables for machine learning
+- Analyzed histograms and tested for data skewness
+- Applied log and Box-Cox transformations to normalize variables
+- Encoded categorical variables (Superhost, Room Type, License Type)
 - Selected relevant features through correlation analysis
 
 ### **Machine Learning Implementation**
