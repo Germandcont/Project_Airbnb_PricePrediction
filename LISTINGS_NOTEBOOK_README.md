@@ -6,46 +6,49 @@ Built a **Random Forest Regressor** to predict optimal Airbnb listing prices in 
 ## 🔧 **Data Science Process Applied**
 
 ### **Data Cleaning & Preprocessing**
-- **Missing Value Handling**: Applied KNN Regressor to impute missing `bedrooms` values
-- **Data Type Conversion**: Cleaned price strings and formatted date columns
-- **Categorical Data Processing**: Standardized license categories
-- **Data Quality**: Strategic handling of null values based on feature importance
+- Handled missing values using KNN for bedrooms data
+- Cleaned price and date columns
+- Standardized categorical variables
+- Removed irrelevant data points
 
 ### **Feature Engineering & Analysis**
-- **Statistical Analysis**: Examined data distribution and skewness
-- **Data Transformation**: Applied log transformation to normalize price variable
-- **Categorical Encoding**: Used one-hot encoding for neighborhood features
-- **Feature Selection**: Analyzed correlations to identify relevant predictors
+- Analyzed data distribution and applied transformations
+- Encoded categorical variables for machine learning
+- Selected relevant features through correlation analysis
 
 ### **Machine Learning Implementation**
-- **Model Selection**: Implemented Random Forest Regressor
-- **Model Optimization**: Used GridSearchCV to find best parameters
-  - Tested different `n_estimators` and `max_features` values
-- **Model Evaluation**: Applied train/test split methodology
-- **Performance Assessment**: Calculated MAE and RMSE metrics
+- Built Random Forest Regressor model
+- Optimized model parameters using GridSearchCV
+- Evaluated performance with standard metrics
 
 ### **Exploratory Data Analysis**
-- **Data Visualization**: Created histograms and distribution plots
-- **Correlation Analysis**: Generated heatmaps to understand feature relationships
-- **Geographic Analysis**: Plotted price variations by location coordinates
-- **Data Distribution**: Assessed normality and applied appropriate transformations
+- Created visualizations to understand data patterns
+- Analyzed feature relationships and correlations
+- Examined geographic price distributions
+
+### **Interactive Dashboard Design**
+- Built Power BI dashboard for data visualization
+- Demonstrated price impact when model variables change
+- Created interactive insights for stakeholders
+
+### **Web Application Development**
+- Developed Streamlit app with predictive model integration
+- Built user-friendly form interface for price estimation
+- Enabled real-time predictions based on property characteristics
 
 ## 📈 **Project Outcomes**
-- ✅ Successfully handled missing data using KNN imputation approach
-- ✅ Processed categorical variables for machine learning compatibility
-- ✅ Built and optimized Random Forest model using GridSearchCV
-- ✅ Generated clean dataset ready for price prediction applications
-- ✅ Created foundation for **Streamlit web application**
+- ✅ Clean dataset ready for machine learning
+- ✅ Trained Random Forest price prediction model  
+- ✅ Data ready for Streamlit web application
 
 ## 🛠 **Technologies Used**
 - **Python**: pandas, numpy, scikit-learn
-- **Machine Learning**: KNN, Random Forest, GridSearchCV
-- **Visualization**: matplotlib, seaborn
-- **Statistical Analysis**: scipy.stats, skewness testing
-- **Data Engineering**: Feature scaling, encoding, transformation
+- **Machine Learning**: KNN, Random Forest, GridSearchCV  
+- **Visualization**: matplotlib, seaborn, Power BI
+- **Web Development**: Streamlit
 
 ## 📊 **Final Deliverables**
-- `df_clean.csv`: Processed dataset with handled missing values
-- `df_model.csv`: Feature-ready data for machine learning
-- Trained Random Forest model with optimized parameters
-- Data analysis insights and visualizations
+- Clean datasets (`df_clean.csv`, `df_model.csv`)
+- Optimized Random Forest model
+- Interactive Power BI dashboard
+- Streamlit web application for price predictions
